@@ -1,4 +1,5 @@
-FROM openjdk:17
+FROM openjdk:17-jdk
+WORKDIR /app
+COPY target/ecom-backend.jar /app/ecom-backend.jar
 EXPOSE 8080
-ADD target/ecom-backend.jar ecom-backend.jar
-ENTRYPOINT ["java","-jar","/ecom-backend.jar"]
+CMD ["java","-jar","/ecom-backend.jar"]
