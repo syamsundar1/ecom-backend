@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: api-gateway
+  config:
+    import: configserver:http://localhost:8888/
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user/**
+        - id: PRODUCT-SERVICE
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product/**
+        - id: SEARCH-SERVICE
+          uri: lb://SEARCH-SERVICE
+          predicates:
+            - Path=/search/**
+        - id: CART-SERVICE
+          uri: lb://CART-SERVICE
+          predicates:
+            - Path=/cart/**
+        - id: payment-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/payment/**
+
+server:
+  port: 9000
+
+SECRET_KEY: "323077263631263c7b5a545f5c596221253f31583045575e4f27446e7c2b3254"
