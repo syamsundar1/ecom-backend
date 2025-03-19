@@ -1,7 +1,5 @@
 package com.ecom.product_service.service;
 
-import com.ecom.product_service.ProductServiceApplication;
-import com.ecom.product_service.config.RabbitMqConfig;
 import com.ecom.product_service.constants.MessageConstants;
 import com.ecom.product_service.dto.AddProductRequestDTO;
 import com.ecom.product_service.dto.AddProductResponseDTO;
@@ -13,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -51,5 +50,15 @@ public class ProductService {
                 .description(product.getDescription())
                 .image(product.getImage())
                 .build();
+    }
+
+    public Product getProduct(String productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        if(product.isPresent()){
+            return product.get();
+        }else{
+            throw new RuntimeException("Product not found ");
+        }
+
     }
 }

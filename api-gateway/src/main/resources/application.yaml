@@ -22,6 +22,14 @@ spring:
           uri: lb://CART-SERVICE
           predicates:
             - Path=/cart/**
+        - id: ORDER-SERVICE
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order/**
+        - id: REVIEW-SERVICE
+          uri: lb://REVIEW-SERVICE
+          predicates:
+            - Path=/review/**
         - id: payment-service
           uri: http://localhost:8084
           predicates:

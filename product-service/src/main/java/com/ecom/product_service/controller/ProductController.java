@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
     @Autowired
@@ -20,6 +21,11 @@ public class ProductController {
     @GetMapping
     public List<Product> getAllProducts(){
         return  productService.getAllProducts();
+    }
+
+    @GetMapping("/{productId}")
+    public Product getAllProducts(@PathVariable("productId") String productId){
+        return productService.getProduct(productId);
     }
 
     @PostMapping("/add_product")

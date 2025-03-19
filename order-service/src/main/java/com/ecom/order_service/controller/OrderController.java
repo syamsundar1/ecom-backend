@@ -5,7 +5,8 @@ import com.ecom.order_service.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/order")
+@RestController
+@RequestMapping("/order")
 @RequiredArgsConstructor
 public class OrderController {
 
